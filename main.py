@@ -34,10 +34,10 @@ def run(r):
 	run(r)
 
 def secondry():
-	user = "MCOM_Android"
-	word = "abcgold13"
-	cli_id = "0GxgCQvIeCZ2dQ"
-	cli_sec = "3s_3zV7qDZhbCWueMEXAx7IWs8A"
+	user = "USERNAME"
+	word = "PASSWORD"
+	cli_id = "CLIENT_ID"
+	cli_sec = "CLIENT_SECRET"
 	
 	r = praw.Reddit(username=user,
 	    	password=word,
