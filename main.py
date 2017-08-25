@@ -4,27 +4,40 @@ import time
 
 print "I am Softy:)"
 
+replied_posts = set()
 replied_users = set()
 
 def run(r):
-	for comment in r.subreddit('all').comments(limit=200):
-		if ' ' in comment.body or '' in comment.body:
+	for comment in r.subreddit('depression').new(limit=200):
+		if 'suicide' in comment.title or 'kill myself' in comment.title or '' in comment.title:
 			for user in replied_users:
 				print user
-			if comment.author in replied_users:
+			if comment.author in replied_posts:
 				print 'Not replying'
 			else:
 				print comment.author
-				print comment.body
-				comment.reply("Do you own an Android phone? Do you want to check out a new, awesome, minimal launcher? Come check out mine called [Comely](https://play.google.com/store/apps/details?id=com.Softy.Launcher2). It's pretty, like you:)")
-				replied_users.add(comment.author)
+				print comment.title
+				comment.reply("You. Yes,  you. You are beautiful. You are amazing. Keep doing you. If you or anyone you know is on the verge of suicide, please call the national suicide hotline at 1-800-273-8255. They need you, buddy.")
+				replied_posts.add(comment.author)
+	
+	for replies in r.subreddit('all').comments(limit=200):
+		if 'suicide' in replies.body or 'kill myself' in replies.body or '' in replies.body:
+			for user in replied_users:
+				print user
+			if replies.author in replied_users:
+				print 'Not replying'
+			else:
+				print replies.author
+				print replies.title
+				replies.reply("You. Yes,  you. You are beautiful. You are amazing. Keep doing you. If you or anyone you know is on the verge of suicide, please call the national suicide hotline at 1-800-273-8255. They need you, and you shouldn't be here alone.")
+				replied_users.add(replies.author)
 	run(r)
 
 def secondry():
-	user = "froggie-style-pepe"
+	user = "MCOM_Android"
 	word = "abcgold13"
-	cli_id = "sDZakdCFvFt5zg"
-	cli_sec = "rmKHpCIkQqYA2EPDeDo1b83G6mc"
+	cli_id = "0GxgCQvIeCZ2dQ"
+	cli_sec = "3s_3zV7qDZhbCWueMEXAx7IWs8A"
 	
 	r = praw.Reddit(username=user,
 	    	password=word,
